@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: webrtc-portal
+    env: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
