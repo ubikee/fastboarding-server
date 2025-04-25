@@ -1,0 +1,9 @@
+<order id="JOB-001">
+  <customer code="C123">
+    <name>ACME Corp</name>
+  </customer>
+  <size>
+    <width unit="mm">210</width>
+    <height>297</height>
+  </size>
+</order>

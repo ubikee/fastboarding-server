@@ -1,0 +1,21 @@
+{
+  "name": "fastboarding-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "build-portal": "node scripts/copy-portal.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0",
+    "mongodb-memory-server": "^10.1.4",
+    "socket.io": "^4.8.1",
+    "xml2js": "^0.6.2"
+  }
+}

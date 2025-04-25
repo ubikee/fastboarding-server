@@ -1,0 +1,13 @@
+{
+  "name": "proveedor-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "signaling": "node src/signaling/signaling-server.js"
+  },
+  "dependencies": {
+    "wrtc": "^0.4.7",
+    "ws": "^8.13.0"
+  }
+}
