@@ -18,14 +18,17 @@ function createSocketServer(httpServer, { onUpdate } = {}) {
   }
 
   io.on('connection', socket => {
+
     socket.on('join', ({ room, role }) => {
+
       socket.join(room);
       if (!rooms[room]) rooms[room] = { clients: [], providers: [], connections: [] };
       rooms[room][role + 's'].push(socket.id);
+      console.log('Sala:', room, '>', role, socket.id, 'se unió a la sala');
+      socket.emit('joined', socket.id, room);
 
       if (role === 'client') {
         const providerId = rooms[room].providers[0];
-        console.log('CLIENTE', socket.id, 'se unió a la sala', room, 'como', role);
         if (providerId) {
           rooms[room].connections.push({
             client: socket.id,
@@ -33,15 +36,14 @@ function createSocketServer(httpServer, { onUpdate } = {}) {
             status: 'pending',
             progress: 0
           });
-          console.log('CLIENTE', socket.id, 'enviando señal a PROVEEDOR', providerId);
-          socket.emit('peer-joined', providerId);
-          console.log('CLIENTE', socket.id, 'enviado señal a PROVEEDOR', providerId);
+          socket.emit('provider-joined', providerId);
+          console.log('Sala:', room, '>', 'envia proveedor', providerId, 'a',role, socket.id, '[peer-joined]')
         } else {
           socket.emit('no-provider');
+          console.log('Sala:', room, '>', 'informa de que no hay proveedor a', role, socket.id, '[no-provider]')
         }
       }
 
-      socket.emit('joined', socket.id);
       broadcastRoomState(room);
     });
 

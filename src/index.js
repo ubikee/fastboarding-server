@@ -16,5 +16,5 @@ app.use(signaling.server());
 // Run Server
 const PORT = process.env.PORT || 3000;
 httpServer.listen(PORT, () => {
-    console.log('✅ Servidor escuchando en :3000');
+    console.log(`✅ Servidor escuchando en ${PORT}`);
 });
